@@ -4,13 +4,30 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>
-      Home
+      Meus Jogos
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the
-    <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+ 
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-list *ngFor="let jogo of listaDeJogos"> 
+      <ion-item>  
+        <ion-label>
+          <h2>{{jogo.nome}}</h2>
+          <h3>{{jogo.concurso}} - {{jogo.dataSorteio}}</h3>
+        </ion-label> 
+      </ion-item>
+  </ion-list>
+
+
+
+
+
 </ion-content>
