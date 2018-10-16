@@ -1,0 +1,7 @@
+{
+  "name": "loterias",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
