@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ActionSheetController } from 'ionic-angular';
+import { MegasenaPage } from '../forms/megasena/megasena';
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,36 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+      public navCtrl: NavController,
+      public actionSheetCtrl: ActionSheetController
+      ) {
 
   }
+
+  // Opções do actionSheet
+  presentActionSheet() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Selecione o jogo',
+      buttons: [
+        {
+          text: 'Mega sena',
+          //role: 'destructive', ver o que é isso depois
+          handler: () => {
+            this.navCtrl.push(MegasenaPage);
+          }
+        },{
+          text: 'Lotomania',
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
+
+  
 
 }
