@@ -43,20 +43,13 @@
         <ion-item>
           <h6 stacked>Números:</h6>
           <ion-grid>
-              <ion-row>
-                <ion-col> 01 </ion-col>
-                <ion-col> 02 </ion-col>
-                <ion-col> 03 </ion-col>
-                <ion-col> 04 </ion-col>
-                <ion-col> 05 </ion-col>
+              <ion-row *ngfor="let row "> PAREI ITERANDO ESSA GRID
+                <ion-col 
+                  (click)="toggleSelect(1)" 
+                  [ngClass]="isSelected(1) ? 'border' : ''"
+                  > 01 
+                </ion-col>
               </ion-row> 
-              <ion-row> 
-                <ion-col> 06 </ion-col>
-                <ion-col> 07 </ion-col>
-                <ion-col> 08 </ion-col>
-                <ion-col> 09 </ion-col>
-                <ion-col> 10 </ion-col>
-              </ion-row>
           </ion-grid>
         </ion-item>
 
