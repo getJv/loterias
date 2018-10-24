@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MegasenaPage } from '../pages/forms/megasena/megasena';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { MegasenaPage } from '../pages/forms/megasena/megasena';
   ],
   imports: [
     BrowserModule,
+    CommonModule, 
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

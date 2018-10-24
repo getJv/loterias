@@ -45,4 +45,8 @@ export class MegasenaPage {
     return this.dezenasSelecionadas[dezena]
   }
 
+  counter(i: number) {
+    return new Array(i);
+  }
+
 }

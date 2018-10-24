@@ -43,14 +43,22 @@
         <ion-item>
           <h6 stacked>Números:</h6>
           <ion-grid>
-              <ion-row *ngfor="let row "> PAREI ITERANDO ESSA GRID
-                <ion-col 
-                  (click)="toggleSelect(1)" 
-                  [ngClass]="isSelected(1) ? 'border' : ''"
-                  > 01 
-                </ion-col>
-              </ion-row> 
-          </ion-grid>
+            <ion-row align-items-center>
+                <ion-col col-2
+                  class="grid"
+                  *ngFor="let row of counter(60); let i = index "
+                  (click)="toggleSelect(i)" 
+                  [ngClass]="isSelected(i) ? 'border' : ''"
+                >
+                
+                  {{i+1}}
+                  <span > 
+                   
+                  </span>
+              </ion-col >   
+            </ion-row>
+          </ion-grid> 
+          
         </ion-item>
 
 

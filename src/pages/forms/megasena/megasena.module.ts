@@ -7,6 +7,7 @@ import { MegasenaPage } from './megasena';
     MegasenaPage,
   ],
   imports: [
+    
     IonicPageModule.forChild(MegasenaPage),
   ],
 })
