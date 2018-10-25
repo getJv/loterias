@@ -10,6 +10,7 @@ export class MegasenaPage {
 
   dezenasSelecionadas:boolean[] = new Array();
   numberLimit:number = 60;
+  teimosinha:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -39,6 +40,12 @@ export class MegasenaPage {
 
      /* <!-- </ion-col> --> */
     
+  }
+
+
+
+  get isTeimosinha(){
+    return this.teimosinha;
   }
 
   isSelected(dezena:number){

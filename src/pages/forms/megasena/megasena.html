@@ -28,10 +28,10 @@
 
         <ion-item>
             <ion-label stacked>Teimosinha:</ion-label>
-            <ion-toggle name="teimosinha"></ion-toggle>
+            <ion-toggle [(ngModel)]="teimosinha" name="teimosinha"></ion-toggle>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="!isTeimosinha">
             <ion-label stacked>Quantidade:</ion-label>
             <ion-select name="teimosinhaQuantidade">
                 <ion-option value="2">2</ion-option>
