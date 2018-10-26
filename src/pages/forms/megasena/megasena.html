@@ -16,32 +16,39 @@
 <ion-content padding>
 
     <form  (ngSubmit)="cadastrar()" #formulario="ngForm">
-        <ion-item>
-          <ion-label stacked>Concurso:</ion-label>
-          <ion-input name="concurso"></ion-input>
-        </ion-item>
-    
-        <ion-item>
-          <ion-label stacked>Recorrente:</ion-label>
-          <ion-toggle name="recorrente"></ion-toggle>
+        <ion-item >
+          <ion-label stacked>Concurso de início:</ion-label>
+          <ion-input type="number" name="concurso"></ion-input>
         </ion-item>
 
-        <ion-item>
+        <ion-item *ngIf="!isTeimosinha && !isRecorrente">
+          <ion-label stacked>Quantos concursos?</ion-label>
+          <ion-input type="number" name="qntConcursos"></ion-input>
+       </ion-item>
+    
+        <ion-item *ngIf="!isTeimosinha">
+          <ion-label stacked>Recorrente:</ion-label>
+          <ion-toggle  [(ngModel)]="recorrente" name="recorrente"></ion-toggle>
+        </ion-item>
+
+        <ion-item *ngIf="!isRecorrente">
             <ion-label stacked>Teimosinha:</ion-label>
             <ion-toggle [(ngModel)]="teimosinha" name="teimosinha"></ion-toggle>
         </ion-item>
 
-        <ion-item *ngIf="!isTeimosinha">
+        <ion-item *ngIf="isTeimosinha && !isRecorrente">
             <ion-label stacked>Quantidade:</ion-label>
-            <ion-select name="teimosinhaQuantidade">
+            <ion-select name="qntTeimosinha">
                 <ion-option value="2">2</ion-option>
                 <ion-option value="4">4</ion-option>
                 <ion-option value="8">8</ion-option>
               </ion-select>
         </ion-item>
+
+        
         
         <ion-item>
-          <h6 stacked>Números:</h6>
+          <h6 stacked>Marque seus números: {{quantidadeMarcado}} - {{getPreco(quantidadeMarcado) | currency:'R$ ' }}</h6>
           <ion-grid>
             <ion-row align-items-center>
                 <ion-col col-2
