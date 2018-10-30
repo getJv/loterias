@@ -18,12 +18,12 @@
     <form  (ngSubmit)="cadastrar()" #formulario="ngForm">
         <ion-item >
           <ion-label stacked>Concurso de início:</ion-label>
-          <ion-input type="number" name="concurso"></ion-input>
+          <ion-input type="number" [(ngModel)]="concurso" name="concurso"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="!isTeimosinha && !isRecorrente">
           <ion-label stacked>Quantos concursos?</ion-label>
-          <ion-input type="number" name="qntConcursos"></ion-input>
+          <ion-input type="number" [(ngModel)]="qntConcursos" name="qntConcursos"></ion-input>
        </ion-item>
     
         <ion-item *ngIf="!isTeimosinha">
@@ -38,7 +38,7 @@
 
         <ion-item *ngIf="isTeimosinha && !isRecorrente">
             <ion-label stacked>Quantidade:</ion-label>
-            <ion-select name="qntTeimosinha">
+            <ion-select [(ngModel)]="qntTeimosinha" name="qntTeimosinha">
                 <ion-option value="2">2</ion-option>
                 <ion-option value="4">4</ion-option>
                 <ion-option value="8">8</ion-option>
