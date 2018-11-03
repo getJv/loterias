@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, ActionSheetController } from 'ionic-angular';
+import { NavController, ActionSheetController, LoadingController, AlertController } from 'ionic-angular';
 import { MegasenaPage } from '../forms/megasena/megasena';
 import { MegasenaProvider } from '../../providers/megasena/mega-sena-service';
+import { SorteioMega } from '../../models/SorteioMega';
 
 @Component({
   selector: 'page-home',
@@ -9,15 +10,45 @@ import { MegasenaProvider } from '../../providers/megasena/mega-sena-service';
 })
 export class HomePage {
 
-  public jogos;
+  public jogos:SorteioMega[];
 
   constructor(
       public navCtrl: NavController,
       public actionSheetCtrl: ActionSheetController,
-      public megaService:MegasenaProvider
+      public megaService:MegasenaProvider,
+      private loadingCtrl:LoadingController,
+      private alertCtrl:AlertController
       ) {
 
   }
+
+  ionViewDidLoad(){
+    this.megaService.getAll().subscribe(
+      (dados:SorteioMega[]) => {
+        this.jogos = dados;
+        loading.dismiss();
+      },
+      (err)=>{
+        console.log(err); 
+        loading.dismiss();
+        this.alertCtrl.create({
+          title:'Erro',
+          subTitle:'Não foi possível carregar a lista de carros',
+          buttons:[{
+            text:'Ok'
+          }]
+        }).present();
+      }
+    )
+   
+    let loading = this.loadingCtrl.create({
+      content:'Aguarde ...'
+    });
+    loading.present();
+  }
+
+
+
 
   // Opções do actionSheet
   presentActionSheet() {
@@ -41,17 +72,25 @@ export class HomePage {
     actionSheet.present();
   }
 
-  getAll(){
+  visualizarSorteio(sorteio:SorteioMega){
 
-    this.megaService.getAll().subscribe(
-      (dados) => {
-        this.jogos = dados;
-        console.log(dados)
-      },
-      (err)=>console.log(err)
-    )
+    //this.navCtrl.push(VisualizarSorteio.name,{sorteioSelecionado:sorteio});
+
   }
 
+  imprimeDezenas(dezenas:any){
+    let tt ='';
+    
+    for(var propt in dezenas) {
+      tt += dezenas[propt] +' ';
+    }
+    
+    
+    return tt;
+    
+  }
+
+  
 
   
 

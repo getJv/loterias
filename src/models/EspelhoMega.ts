@@ -7,7 +7,4 @@ export interface EspelhoMega{
     recorrente:boolean;
     valor:number;
     enviado:boolean;
-
-
-
 }
