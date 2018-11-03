@@ -1,0 +1,30 @@
+{ 
+	"jogo":"Mega Sena",
+	"data_sorteio": "21/12/2018",
+	"concurso": 1234,
+	"acertos": 5,
+	"premio": "12,123.50",
+	"minhas_dezenas":{
+						"d1":"05",
+						"d2":"03",
+						"d3":"02",
+						"d4":"01",
+						"d5":"08"
+					},
+	"dezenas_sorteadas":{
+						"d1":"05",
+						"d2":"03",
+						"d3":"02",
+						"d4":"01",
+						"d5":"08",
+						"d6":"10"
+					},
+	"faixas_de_premios":{
+							"Sena"	: 1234657,
+							"Quina" : 123456,
+							"Quadra": 12345,
+							"Terno" : 1234,
+							"Duque" : 123
+						}
+	
+}

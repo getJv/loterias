@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ActionSheetController } from 'ionic-angular';
 import { MegasenaPage } from '../forms/megasena/megasena';
+import { MegasenaProvider } from '../../providers/megasena/mega-sena-service';
 
 @Component({
   selector: 'page-home',
@@ -8,9 +9,12 @@ import { MegasenaPage } from '../forms/megasena/megasena';
 })
 export class HomePage {
 
+  public jogos;
+
   constructor(
       public navCtrl: NavController,
-      public actionSheetCtrl: ActionSheetController
+      public actionSheetCtrl: ActionSheetController,
+      public megaService:MegasenaProvider
       ) {
 
   }
@@ -35,6 +39,17 @@ export class HomePage {
       ]
     });
     actionSheet.present();
+  }
+
+  getAll(){
+
+    this.megaService.getAll().subscribe(
+      (dados) => {
+        this.jogos = dados;
+        console.log(dados)
+      },
+      (err)=>console.log(err)
+    )
   }
 
 

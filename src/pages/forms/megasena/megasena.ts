@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { EspelhoMega } from '../../../models/EspelhoMega';
+import { MegasenaProvider } from '../../../providers/megasena/mega-sena-service';
+
 
 @IonicPage()
 @Component({
@@ -8,29 +11,47 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 })
 export class MegasenaPage {
 
-  dezenasSelecionadas:boolean[] = new Array();
-  concurso:number;
-  qntConcursos:number;
-  teimosinha:boolean = false;
-  qntTeimosinha:number
-  recorrente:boolean = false;
+    dezenasSelecionadas:boolean[] = new Array();
+    concurso:number;
+    qntConcursos:number;
+    teimosinha:boolean = false;
+    qntTeimosinha:number
+    recorrente:boolean = false;
 
-  numberLimit:number = 60;
-  minimoDezenas:number = 6;
-  maximoDezenas:number = 15;
-  valores:number[] = new Array();
+    numberLimit:number = 60;
+    minimoDezenas:number = 6;
+    maximoDezenas:number = 15;
+    valores:number[] = new Array();
+  
 
-  constructor(
+   constructor(
       public navCtrl: NavController, 
       public navParams: NavParams,
-      public alertCtrl:AlertController) {
+      public alertCtrl:AlertController,
+      private megasenaService:MegasenaProvider) {
   }
 
   ionViewDidLoad() {
+
+    this.inicializaDezenas();
+    this.inicializaValoresMegaSena();
+
+    
+  }
+
+  private inicializaDezenas(){
     for(let i = 1; i < this.numberLimit; i++  ){
         this.dezenasSelecionadas[i] = false;
-    }  
+    }
 
+  }
+
+  private inicializaValoresMegaSena(){
+    
+    this.numberLimit   = 60;
+    this.minimoDezenas = 6;
+    this.maximoDezenas = 15;
+    
     this.valores[6]  = 3.50;
     this.valores[7]  = 24.50;
     this.valores[8]  = 98;
@@ -41,23 +62,18 @@ export class MegasenaPage {
     this.valores[13] = 6006;
     this.valores[14] = 10510.50;
     this.valores[15] = 17517.50;
-  }
+}
 
   toggleSelect(dezena:number){
        
-      if(this.dezenasSelecionadas[dezena]){
-        this.dezenasSelecionadas[dezena] = false;
-        console.log(this.dezenasSelecionadas)
-      }else if(this.quantidadeMarcado < this.maximoDezenas){
+    if(this.dezenasSelecionadas[dezena]){
+      this.dezenasSelecionadas[dezena] = false;
+    }else if(this.quantidadeMarcado < this.maximoDezenas){
         this.dezenasSelecionadas[dezena] = true;
-      }
+    }
 
-     /* <!-- </ion-col> --> */
-    
   }
-
-
-
+ 
   get isTeimosinha(){
     return this.teimosinha;
   }
@@ -65,12 +81,13 @@ export class MegasenaPage {
   get isRecorrente(){
     return this.recorrente;
   }
+  
 
   get quantidadeMarcado():number{
 
     return this.dezenasSelecionadas.filter(tt => tt).length; 
   }
-
+  
   getPreco(number:number){
 
     if(number >= this.minimoDezenas && number <= this.maximoDezenas)
@@ -83,33 +100,54 @@ export class MegasenaPage {
   isSelected(dezena:number){
     return this.dezenasSelecionadas[dezena]
   }
+  
 
   counter(i: number) {
     return new Array(i);
   }
 
-  cadastrar(){
-
-    try { // respeite a ordem dos IFs ele atende a validação sequêncial
-
-      if (this.quantidadeMarcado < 6 )
-        throw new Error('O jogo mínimo tem 6 dezenas.')
-      
-      if (this.concurso < 1000 || !this.concurso )
+  private isValid(){
+    if (this.quantidadeMarcado < 6 )
+    throw new Error('O jogo mínimo tem '+ this.minimoDezenas+' dezenas.')
+  
+    if (this.concurso < 1000 || !this.concurso )
         throw new Error('O número do concurso inválido.')
-      
-      if( this.recorrente )
+    
+    if( this.recorrente )
         return;
-      
-      if(   !this.recorrente 
+    
+    if(   !this.recorrente 
             && !this.teimosinha
             && !this.qntConcursos 
         ) throw new Error('Informe a quantidade de concursos.')
 
-      if(  this.teimosinha
+    if(  this.teimosinha
         && !this.qntTeimosinha 
-      ) throw new Error('Informe a quantidade de teimosinhas.')
+    ) throw new Error('Informe a quantidade de teimosinhas.')
+}
 
+  cadastrar(){
+
+    try { 
+
+      this.isValid();
+      let espelho:EspelhoMega = {
+        concurso: this.concurso,
+        dezenasSelecionadas: this.dezenasSelecionadas,
+        qntConcursos:this.qntConcursos,
+        qntTeimosinha: this.qntTeimosinha,
+        recorrente:this.recorrente,
+        teimosinha: this.teimosinha,
+        valor: this.getPreco(this.quantidadeMarcado),
+        enviado: false
+      }
+
+      this.megasenaService.registra(espelho).subscribe(
+        (data) => {console.log(data)},
+        (err) => {console.log(espelho);console.log(err)},
+      );
+      
+      
       // Programar o envio para um ServiceUIFrameContext.getCachedFrameMessage.length./
 
     } catch (error) {
