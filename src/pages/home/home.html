@@ -18,12 +18,16 @@
 
 
   <ion-list> 
+    <!-- <ion-item>
+      {{jogos }}
+    </ion-item> -->
+
     <ion-item *ngFor="let jogo of jogos">
       
-      <h2> {{jogo.jogo}}</h2>
+      <h2> {{jogo.id}}</h2>
       <p>Concurso: {{jogo.concurso}}</p>
-      <p>Sorteio: {{jogo.data_sorteio}} </p>
-      <p>Meus numeros: {{ imprimeDezenas(jogo.minhas_dezenas) }}</p>
+      <!-- <p>Sorteio: {{jogo.data_sorteio}} </p>
+      <p>Meus numeros: {{ imprimeDezenas(jogo.minhas_dezenas) }}</p> -->
     
     </ion-item>
   </ion-list>

@@ -25,11 +25,13 @@ export class HomePage {
   ionViewDidLoad(){
     this.megaService.getAll().subscribe(
       (dados:SorteioMega[]) => {
-        this.jogos = dados;
+        this.jogos = JSON.parse(JSON.stringify(dados));
+        console.log(this.jogos); 
         loading.dismiss();
       },
       (err)=>{
         console.log(err); 
+        
         loading.dismiss();
         this.alertCtrl.create({
           title:'Erro',

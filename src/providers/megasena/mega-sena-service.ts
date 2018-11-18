@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { EspelhoMega } from '../../models/EspelhoMega';
 import { Observable } from 'rxjs/Observable';
 
+const API_URL = 'http://localhost:3000/api';
+
 @Injectable()
 export class MegasenaProvider {
 
@@ -12,7 +14,7 @@ export class MegasenaProvider {
 
   registra(espelho:EspelhoMega){
     return this.http
-    .post("http://localhost:3000", espelho)
+    .post(API_URL, espelho)
     .do(()=>{ espelho.enviado = true})
     .catch(
       (err) =>  Observable.of(new Error('Falha no envio'))
@@ -21,7 +23,7 @@ export class MegasenaProvider {
   }
   
   getAll(){
-    return this.http.get("http://localhost:3000/index.php");
+    return this.http.get(API_URL + '/jogos');
   }
 
 }
