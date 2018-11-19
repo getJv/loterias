@@ -24,10 +24,10 @@
 
     <ion-item *ngFor="let jogo of jogos">
       
-      <h2> {{jogo.id}}</h2>
-      <p>Concurso: {{jogo.concurso}}</p>
-      <!-- <p>Sorteio: {{jogo.data_sorteio}} </p>
-      <p>Meus numeros: {{ imprimeDezenas(jogo.minhas_dezenas) }}</p> -->
+      <h2> {{jogo.jogotipo.nome}}</h2>
+      <p>Concurso: {{jogo.concurso.id}}</p>
+      <!-- <p>Sorteio: {{jogo.data_sorteio}} </p>-->
+      <p>Meus numeros: {{ imprimeDezenas(jogo.jogodetalhes.dezenas) }}</p> 
     
     </ion-item>
   </ion-list>
