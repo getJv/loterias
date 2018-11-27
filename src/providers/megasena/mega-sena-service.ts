@@ -20,8 +20,13 @@ export class MegasenaProvider {
     );
   }
   
-  getAll(){
-    return this.http.get("http://localhost:3000/index.php");
+  //getAll(){
+  //  return this.http.get("http://localhost:3000/api/jogos");
+  //}
+
+
+  getJogos(){
+    return this.http.get("http://localhost:3000/api/jogos");
   }
 
 }

@@ -23,9 +23,11 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.megaService.getAll().subscribe(
+    this.megaService.getJogos().subscribe(
       (dados:SorteioMega[]) => {
         this.jogos = dados;
+        //console.log(dados[0].jogodetalhes.dezenas)
+        
         loading.dismiss();
       },
       (err)=>{
