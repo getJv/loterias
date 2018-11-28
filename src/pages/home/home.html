@@ -20,14 +20,9 @@
   <ion-list> 
     <ion-item *ngFor="let jogo of jogos">
       
-      <h2> {{jogo.jogotipo.nome}}</h2>
+      <h2 class="{{jogo.jogotipo.logo_cor}}"> {{jogo.jogotipo.nome}}</h2>
       <p>Concurso: {{jogo.concurso.id}}</p>
-      <p>Meus números: {{ 
-         
-            jogo.jogodetalhes.dezenas.join(', ')
-           
-      
-      }}</p>
+      <p>Meus números: {{ jogo.jogodetalhes.dezenas.join(', ') }}</p>
     
     </ion-item>
   </ion-list>
