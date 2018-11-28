@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { EspelhoMega } from '../../../models/EspelhoMega';
-import { MegasenaProvider } from '../../../providers/megasena/mega-sena-service';
+import { JogosProvider } from "../../../providers/jogos-provider";
 
 
 @IonicPage()
@@ -28,7 +28,7 @@ export class MegasenaPage {
       public navCtrl: NavController, 
       public navParams: NavParams,
       public alertCtrl:AlertController,
-      private megasenaService:MegasenaProvider) {
+      private megasenaService:JogosProvider) {
   }
 
   ionViewDidLoad() {

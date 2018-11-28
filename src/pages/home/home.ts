@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, ActionSheetController, LoadingController, AlertController } from 'ionic-angular';
 import { MegasenaPage } from '../forms/megasena/megasena';
-import { MegasenaProvider } from '../../providers/megasena/mega-sena-service';
+
 import { SorteioMega } from '../../models/SorteioMega';
+import { JogosProvider } from '../../providers/jogos-provider';
+import { JogoDetalhesPage } from '../jogo-detalhes/jogo-detalhes';
 
 @Component({
   selector: 'page-home',
@@ -15,7 +17,7 @@ export class HomePage {
   constructor(
       public navCtrl: NavController,
       public actionSheetCtrl: ActionSheetController,
-      public megaService:MegasenaProvider,
+      public megaService:JogosProvider,
       private loadingCtrl:LoadingController,
       private alertCtrl:AlertController
       ) {
@@ -74,23 +76,13 @@ export class HomePage {
     actionSheet.present();
   }
 
-  visualizarSorteio(sorteio:SorteioMega){
-
-    //this.navCtrl.push(VisualizarSorteio.name,{sorteioSelecionado:sorteio});
+  detalharJogo(jogo:SorteioMega){
+    
+    this.navCtrl.push(JogoDetalhesPage.name,{jogoSelecionado:jogo})
 
   }
 
-  imprimeDezenas(dezenas:any){
-    let tt ='';
-    
-    for(var propt in dezenas) {
-      tt += dezenas[propt] +' ';
-    }
-    
-    
-    return tt;
-    
-  }
+  
 
   
 

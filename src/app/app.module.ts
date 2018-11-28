@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MegasenaPage } from '../pages/forms/megasena/megasena';
 import { CommonModule } from '@angular/common';
-import { MegasenaProvider } from '../providers/megasena/mega-sena-service';
+
 
 // ativa o perador finally para uso na no cadastro.ts
 import 'rxjs/add/operator/finally';
@@ -20,6 +20,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/fromPromise'; // converte promisse em observable
 import 'rxjs/add/observable/of'; 
 import { HttpClientModule } from '@angular/common/http';
+import { JogosProvider } from '../providers/jogos-provider';
+
 
 @NgModule({
   declarations: [
@@ -45,7 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MegasenaProvider
+    JogosProvider
   ]
 })
 export class AppModule {}
