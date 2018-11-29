@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { Jogo } from '../../models/Jogo';
 
 /**
@@ -20,13 +20,57 @@ export class JogoDetalhesPage {
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams
+    public navParams: NavParams,
+    public actionSheetCtrl: ActionSheetController,
     ) {
       this.jogo = this.navParams.get('jogoSelecionado');
   }
 
+  // Opções do actionSheet
+  presentActionSheet() {
+    const actionSheet = this.actionSheetCtrl.create({
+      title: 'Escolha uma opções',
+      buttons: [
+        {
+          text: 'Editar',
+          //role: 'destructive', ver o que é isso depois
+          handler: () => {
+            //this.navCtrl.push(MegasenaPage);
+            console.log('Camar editar')
+          }
+        },{
+          text: 'Repetir jogo',
+          handler: () => {
+            console.log('Repetir Jogo');
+          }
+        },{
+          text: 'Excluir',
+          handler: () => {
+            console.log('Excluir Jogo');
+          }
+        },{
+          text: 'Arquivar',
+          handler: () => {
+            console.log('Arquivar Jogo');
+          }
+        },{
+          text: 'Sorteio completo',
+          handler: () => {
+            console.log('ir para sorteios');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad JogoDetalhesPage');
+    
+    
+    
+    
+    
+    console.log(this.jogo);
   }
 
 }

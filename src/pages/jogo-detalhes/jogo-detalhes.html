@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>jogo-detalhes</ion-title>
+    <ion-title>Detalhamento do jogo</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,4 +15,51 @@
 
 <ion-content padding>
 
+
+    <ion-card>
+        <ion-card-header>
+          <h1 class="{{jogo.jogotipo.logo_cor}}" > {{jogo.jogotipo.nome}}</h1>
+          <small> 
+            Concurso: {{jogo.concurso.id}} / {{jogo.concurso.ano}} | 
+            <ion-badge > Ganhou! </ion-badge>
+            <ion-icon name="alarm"></ion-icon>
+            <ion-icon name="filing"></ion-icon>
+          </small> 
+        </ion-card-header>
+        <ion-card-content>
+          <h3>Meus números:</h3>
+          <ion-item>
+            <span *ngFor="let n of jogo.jogodetalhes.dezenas">
+                <button ion-button round>{{n}}</button>
+            </span>  
+          </ion-item>
+       
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card>
+          <ion-card-header>
+              <h1> Sorteio </h1> 
+              <h2> Aparecida de Goiânia </h2>
+              <small>23/11/2018 10:20</small>
+          </ion-card-header>
+          <ion-card-content>
+            <h3>Números sorteados:</h3>
+             <ion-item>
+              <span *ngFor="let n of jogo.jogodetalhes.dezenas">
+                <button color="light" ion-button round>{{n}}</button>
+              </span>
+             </ion-item>
+          </ion-card-content>
+    </ion-card>
+    
+    <ion-fab right bottom>
+      <button ion-fab color="primary" (click)="presentActionSheet()">
+        <ion-icon name="reorder"></ion-icon>
+      </button>
+    </ion-fab>
+ 
+
 </ion-content>
+
+

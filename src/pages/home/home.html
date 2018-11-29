@@ -21,10 +21,21 @@
     <ion-item *ngFor="let jogo of jogos" (click)="detalharJogo(jogo)">
       
       <h2 class="{{jogo.jogotipo.logo_cor}}"> {{jogo.jogotipo.nome}}</h2>
-      <p>Concurso: {{jogo.concurso.id}}</p>
-      <p>Meus números: {{ jogo.jogodetalhes.dezenas.join(', ') }}</p>
-    
+      <p>
+          Concurso: {{jogo.concurso.id}}
+          <ion-badge *ngIf="jogo.jogo_vencedor == 's'" color="secondary" > Ganhou! </ion-badge>
+          <ion-icon name="alarm"></ion-icon>
+          <ion-icon name="filing"></ion-icon>
+      </p>
+      
+      <span *ngFor="let dez of jogo.jogodetalhes.dezenas">
+          <button ion-button round>{{dez[0]}}</button>
+      </span>
+
+      
     </ion-item>
   </ion-list>
+
+  
 
 </ion-content>
