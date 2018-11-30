@@ -21,7 +21,7 @@
           <h1 class="{{jogo.jogotipo.logo_cor}}" > {{jogo.jogotipo.nome}}</h1>
           <small> 
             Concurso: {{jogo.concurso.id}} / {{jogo.concurso.ano}} | 
-            <ion-badge > Ganhou! </ion-badge>
+            <ion-badge *ngIf="jogo.jogo_vencedor == 's'" color="secondary" > Ganhou! </ion-badge>
             <ion-icon name="alarm"></ion-icon>
             <ion-icon name="filing"></ion-icon>
           </small> 
@@ -29,9 +29,10 @@
         <ion-card-content>
           <h3>Meus números:</h3>
           <ion-item>
-            <span *ngFor="let n of jogo.jogodetalhes.dezenas">
-                <button ion-button round>{{n}}</button>
-            </span>  
+              <span *ngFor="let dez of jogo.jogodetalhes.dezenas">
+                  <button color="{{(dez[1]=='false')? 'light':'primary'}}" ion-button round>{{dez[0]}}</button>
+                  
+              </span> 
           </ion-item>
        
         </ion-card-content>
@@ -47,7 +48,7 @@
             <h3>Números sorteados:</h3>
              <ion-item>
               <span *ngFor="let n of jogo.jogodetalhes.dezenas">
-                <button color="light" ion-button round>{{n}}</button>
+                <button color="light" ion-button round>{{n[0]}}</button>
               </span>
              </ion-item>
           </ion-card-content>

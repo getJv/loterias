@@ -29,7 +29,8 @@
       </p>
       
       <span *ngFor="let dez of jogo.jogodetalhes.dezenas">
-          <button ion-button round>{{dez[0]}}</button>
+          <button color="{{(dez[1]=='false')? 'light':'primary'}}" ion-button round>{{dez[0]}}</button>
+          
       </span>
 
       
