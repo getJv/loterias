@@ -21,6 +21,10 @@ import 'rxjs/add/observable/fromPromise'; // converte promisse em observable
 import 'rxjs/add/observable/of'; 
 import { HttpClientModule } from '@angular/common/http';
 import { JogosProvider } from '../providers/jogos-provider';
+import { SorteiosProvider } from '../providers/sorteios/sorteios';
+import { JogoDetalhesPage } from '../pages/jogo-detalhes/jogo-detalhes';
+
+
 
 
 @NgModule({
@@ -28,26 +32,33 @@ import { JogosProvider } from '../providers/jogos-provider';
     MyApp,
     HomePage,
     ListPage,
-    MegasenaPage
+    MegasenaPage,
+    JogoDetalhesPage,
+    
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     CommonModule, 
     IonicModule.forRoot(MyApp),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ListPage,
-    MegasenaPage
+    MegasenaPage,
+    JogoDetalhesPage
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    JogosProvider
+    JogosProvider,
+    SorteiosProvider,
+    
   ]
 })
 export class AppModule {}

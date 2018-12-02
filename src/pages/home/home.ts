@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, ActionSheetController, LoadingController, AlertController } from 'ionic-angular';
 import { MegasenaPage } from '../forms/megasena/megasena';
-
-import { SorteioMega } from '../../models/SorteioMega';
 import { JogosProvider } from '../../providers/jogos-provider';
 import { JogoDetalhesPage } from '../jogo-detalhes/jogo-detalhes';
+import { Jogo } from '../../models/Jogo';
 
 @Component({
   selector: 'page-home',
@@ -12,12 +11,12 @@ import { JogoDetalhesPage } from '../jogo-detalhes/jogo-detalhes';
 })
 export class HomePage {
 
-  public jogos:SorteioMega[];
+  public jogos:Jogo[];
 
   constructor(
       public navCtrl: NavController,
       public actionSheetCtrl: ActionSheetController,
-      public megaService:JogosProvider,
+      public jogosService:JogosProvider,
       private loadingCtrl:LoadingController,
       private alertCtrl:AlertController
       ) {
@@ -25,8 +24,8 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    this.megaService.getJogos().subscribe(
-      (dados:SorteioMega[]) => {
+    this.jogosService.getJogos().subscribe(
+      (dados:Jogo[]) => {
         this.jogos = dados;
         //console.log(dados[0].jogodetalhes.dezenas)
         
@@ -76,10 +75,10 @@ export class HomePage {
     actionSheet.present();
   }
 
-  detalharJogo(jogo:SorteioMega){
+  detalharJogo(jogo:Jogo){
     
-    this.navCtrl.push(JogoDetalhesPage.name,{jogoSelecionado:jogo})
-
+    this.navCtrl.push(JogoDetalhesPage,{jogoSelecionado:jogo})
+    
   }
 
   

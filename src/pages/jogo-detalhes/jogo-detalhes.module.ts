@@ -9,5 +9,8 @@ import { JogoDetalhesPage } from './jogo-detalhes';
   imports: [
     IonicPageModule.forChild(JogoDetalhesPage),
   ],
+  /*  exports:[
+    JogoDetalhesPage
+  ]  */
 })
 export class JogoDetalhesPageModule {}
